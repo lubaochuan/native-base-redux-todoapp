@@ -1,21 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import Expo from 'expo';
+import Index from './src/Index';
 
-export default class App extends React.Component {
-  render() {
+export default class NativeBaseTodoApp extends Component { // eslint-disable-line
+  render() { // eslint-disable-line class-methods-use-this
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Index />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

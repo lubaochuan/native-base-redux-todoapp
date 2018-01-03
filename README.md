@@ -4,4 +4,6 @@ Install needed libraries:
 ```
 npm install redux react-redux --save
 npm install native-base --save
+npm install prop-types --save
+npm install redux-logger --save
 ```
