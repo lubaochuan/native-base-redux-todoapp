@@ -1,10 +1,27 @@
 import React from "react";
 import { Container, Card, CardItem, Body, Content, Header, Left, Right, Icon,
-  Title, Button, Text } from "native-base";
+  Title, Button, Text, Item, Input } from "native-base";
+import { Field, reduxForm } from 'redux-form';
 
-export default class TodoEdit extends React.Component {
+const validate = values => {
+  const error = {};
+  error.name = '';
+  var name = values.name;
+  if(values.name === undefined){
+    name = '';
+  }
+  if(name.replace(/^\s+|\s+$/gm,'').length == 0){
+    error.name = 'required';
+  }
+  return error;
+};
 
-  static navigationOptions = ({ navigation }) => ({
+class TodoEdit extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  static navigationOptions = ({ navigation, item}) => ({
     header: (
       <Header>
         <Left>
@@ -13,34 +30,46 @@ export default class TodoEdit extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>{navigation.state.params.item.text}</Title>
+          <Title>{item.text}</Title>
         </Body>
         <Right />
       </Header>
     )
   });
 
+  renderInput = ({ input, label, type, meta: { touched, error, warning } })=>{
+    var hasError= false;
+    if(error !== undefined){
+      hasError= true;
+    }
+    return(
+      <Item error= {hasError}>
+        <Input {...input}/>
+        {hasError ? <Text>{error}</Text> : <Text />}
+      </Item>
+    )
+  }
+
   render() {
-    const { item } = this.props.navigation.state.params;
+    const { handleSubmit } = this.props;
+
     return (
       <Container>
         <Content padder>
-          <Card>
-            <CardItem>
-              <Icon active name="paper-plane" />
-              <Text>{item.text}</Text>
-              <Right>
-                <Icon name="close" />
-              </Right>
-            </CardItem>
-          </Card>
-          <Button full rounded primary
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("Main")}>
-            <Text>Goto EditScreenTwo</Text>
+          <Field name="name" component={this.renderInput} />
+          <Button block primary onPress={handleSubmit}>
+            <Text>Save</Text>
+          </Button>
+          <Button block primary onPress={()=>this.props.navigation.goBack(null)}>
+            <Text>Cancel</Text>
           </Button>
         </Content>
       </Container>
     );
   }
 }
+
+export default reduxForm({
+  form: 'test',
+  validate
+})(TodoEdit)

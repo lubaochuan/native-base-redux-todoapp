@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Title, Content, InputGroup, Input, List, Button, Icon } from 'native-base';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 import TodoItem from './TodoItem';
@@ -28,15 +28,6 @@ export default class TodoList extends Component {
       {item: rowData, id: rowID, update: this.updateItem});
   }
 
-  onSubmit() {
-    if (this.state.inputText.length > 0) {
-    this.props.addTodo(this.state.inputText);//eslint-disable-line
-      this.setState({
-        inputText: '',
-      });
-    }
-  }
-
   remove(id) {
     this.props.removeTodo(id);
   }
@@ -44,9 +35,17 @@ export default class TodoList extends Component {
   toggle(id) {
     this.props.toggleTodo(id);
   }
-  
+
+  update = (values) => {
+    console.log('Submitted!', JSON.stringify(values))
+    this.props.addTodo(values.name)
+    this.props.navigation.goBack(null)
+  }
+
   edit(item, id) {
-    this.props.navigation.navigate('Edit', {item});
+    this.props.navigation.navigate(
+      'Edit',
+      {item, id, onSubmit: this.update});
   }
 
   renderTodoList() {

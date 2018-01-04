@@ -8,4 +8,5 @@ npm install prop-types --save
 npm install redux-logger --save
 npm install react-navigation --save
 npm install redux-form --save
+npm install react-navigation-props-mapper --save
 ```
