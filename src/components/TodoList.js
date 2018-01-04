@@ -126,31 +126,9 @@ export default class TodoList extends Component {
           </View>
         </Content>
 
-        <View
-          style={{
-            alignSelf: 'flex-end',
-            flex: 0,
-            padding: 5,
-            flexDirection: 'row',
-          }}
-        >
-          <InputGroup
-            borderType="underline"
-            style={{ flex: 0.9 }}
-          >
-            <Input
-              placeholder="Type Your Text Here"
-              value={this.state.inputText}
-              onChangeText={inputText => this.setState({ inputText })}
-              onSubmitEditing={() => this.onSubmit()}
-              maxLength={35}
-            />
-          </InputGroup>
-          <Button
-            style={{ flex: 0.1, marginLeft: 15 }}
-            onPress={() => this.onSubmit()}
-          ><Text>Add</Text></Button>
-        </View>
+        <Button block onPress={() => this.props.navigation.navigate('Edit', {item: "hello"})}>
+          <Text><Icon name="add"/></Text>
+        </Button>
       </Container>
     );
   }

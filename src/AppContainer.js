@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
     toggleTodo: index => dispatch(toggleTodo(index)),
     removeTodo: index => dispatch(removeTodo(index)),
     setVisibilityFilter: displayType => dispatch(setVisibilityFilter(displayType)),
-  };
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
