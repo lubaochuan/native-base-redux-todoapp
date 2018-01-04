@@ -21,6 +21,12 @@ export default class TodoList extends Component {
     super(props);
     this.state = { inputText: '', displayType: 'all' };
   }
+  
+  onOpenItem=(rowData, rowID) => {
+    this.props.navigation.navigate(
+      'Edit',
+      {item: rowData, id: rowID, update: this.updateItem});
+  }
 
   onSubmit() {
     if (this.state.inputText.length > 0) {
@@ -38,95 +44,31 @@ export default class TodoList extends Component {
   toggle(id) {
     this.props.toggleTodo(id);
   }
+  
+  edit(item, id) {
+    this.props.navigation.navigate('Edit', {item});
+  }
 
   renderTodoList() {
-    if ((this.props.displayType === 'all')) {
-      return this.props.todos.map((item, index) =>
-        <TodoItem
-          toggle={() => this.toggle(index)}
-          remove={() => this.remove(index)}
-          item={item}
-          key={index}
-        />
-      );
-    } else if (this.props.displayType === 'completed') {
-      const completed = this.props.todos.filter(item => item.completed).length;
-      if (completed > 0) {
-        return this.props.todos.map((item, index) => {
-          if (item.completed === true) {
-            return (<TodoItem
-              toggle={() => this.toggle(index)}
-              remove={() => this.remove(index)}
-              item={item}
-              key={index}
-            />);
-          }
-
-          return null;
-        });
-      }
-      return <View style={{ alignItems: 'center', paddingTop: 10 }}><Text>No Completed Data</Text></View>;
-    }
-
-    return this.props.todos.map((item, index) => {
-      if (item.completed === false) {
-        return (
-          <TodoItem
-            toggle={() => this.toggle(index)}
-            remove={() => this.remove(index)}
-            item={item}
-            key={index}
-          />
-        );
-      }
-      return null;
-    });
+    return this.props.todos.map((item, index) =>
+      <TodoItem
+        edit={() => this.edit(item, index)}
+        remove={() => this.remove(index)}
+        item={item}
+      />
+    );
   }
 
   render() {
     return (
       <Container>
-        <Header >
-          <Title>NativeBase To-do App</Title>
-        </Header>
-
         <Content contentContainerStyle={{ justifyContent: 'space-between' }} >
-          <View >
-            <List>
-              {this.renderTodoList()}
-            </List>
-
-            {this.props.todos.length > 0 && <View
-              style={{
-                flexDirection: 'row',
-                alignSelf: 'center',
-                justifyContent: 'space-around',
-                width,
-                marginTop: 50 }}
-            >
-              <Button
-                transparent
-                bordered={this.props.displayType === 'all'}
-                onPress={() => this.props.setVisibilityFilter('all')}
-              ><Text>All</Text></Button>
-
-              <Button
-                transparent
-                bordered={this.props.displayType === 'completed'}
-                onPress={() => this.props.setVisibilityFilter('completed')}
-              ><Text>Completed</Text></Button>
-
-              <Button
-                transparent
-                bordered={this.props.displayType === 'active'}
-                onPress={() => this.props.setVisibilityFilter('active')}
-              ><Text>Active</Text></Button>
-
-            </View>}
-          </View>
+          <List>
+            {this.renderTodoList()}
+          </List>
         </Content>
 
-        <Button block onPress={() => this.props.navigation.navigate('Edit', {item: "hello"})}>
+        <Button block onPress={() => this.edit({text:'hello'}, -1)}>
           <Text><Icon name="add"/></Text>
         </Button>
       </Container>

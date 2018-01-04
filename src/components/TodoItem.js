@@ -2,18 +2,16 @@ import React from 'react';
 import { Text, Icon, ListItem, CheckBox } from 'native-base';
 import PropTypes from 'prop-types';
 
-const TodoItem = ({ toggle, remove, item }) => (
-  <ListItem style={{ flex: 1 }}>
-    <CheckBox onPress={toggle} checked={item.completed} />
-    <Text style={{ alignSelf: 'center' }}>
+const TodoItem = ({ edit, remove, item }) => (
+  <ListItem>
+    <Text onLongPress={edit}>
       {item.text}
     </Text>
-    <Icon name="md-trash" style={{ color: '#000000' }} onPress={remove} />
   </ListItem>
 );
 
 TodoItem.propTypes = {
-  toggle: PropTypes.func.isRequired,
+  edit: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
   item: PropTypes.object.isRequired, //eslint-disable-line
 };

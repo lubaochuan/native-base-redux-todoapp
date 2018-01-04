@@ -13,7 +13,7 @@ export default class TodoEdit extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>{navigation.state.params.item}</Title>
+          <Title>{navigation.state.params.item.text}</Title>
         </Body>
         <Right />
       </Header>
@@ -21,14 +21,14 @@ export default class TodoEdit extends React.Component {
   });
 
   render() {
-    const { params } = this.props.navigation.state;
+    const { item } = this.props.navigation.state.params;
     return (
       <Container>
         <Content padder>
           <Card>
             <CardItem>
               <Icon active name="paper-plane" />
-              <Text>{params.item}</Text>
+              <Text>{item.text}</Text>
               <Right>
                 <Icon name="close" />
               </Right>

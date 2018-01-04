@@ -13,9 +13,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addTodo: payload => dispatch(addTodo(payload)),
-    toggleTodo: index => dispatch(toggleTodo(index)),
+    updateTodo: payload => dispatch(updateTodo(payload)),
     removeTodo: index => dispatch(removeTodo(index)),
-    setVisibilityFilter: displayType => dispatch(setVisibilityFilter(displayType)),
   }
 }
 
