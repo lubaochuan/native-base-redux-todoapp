@@ -55,6 +55,7 @@ export default class TodoList extends Component {
         edit={() => this.edit(item, index)}
         remove={() => this.remove(index)}
         item={item}
+        key={index}
       />
     );
   }
