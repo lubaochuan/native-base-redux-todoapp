@@ -38,14 +38,24 @@ export default class TodoList extends Component {
 
   update = (values) => {
     console.log('Submitted!', JSON.stringify(values))
-    this.props.addTodo(values.name)
+    if(values.id < 0){
+      this.props.addTodo(values.text)
+    }else{
+      this.props.updateTodo(values.id, values)
+    }
     this.props.navigation.goBack(null)
   }
 
   edit(item, id) {
-    this.props.navigation.navigate(
-      'Edit',
-      {item, id, onSubmit: this.update});
+    if (id < 0){
+      this.props.navigation.navigate(
+        'Edit',
+        {initialValues: {...item, id}, id, onSubmit: this.update});
+    }else{
+      this.props.navigation.navigate(
+        'Edit',
+        {initialValues: {...item, id}, id, onSubmit: this.update});
+    }
   }
 
   renderTodoList() {
@@ -68,7 +78,7 @@ export default class TodoList extends Component {
           </List>
         </Content>
 
-        <Button block onPress={() => this.edit({text:'hello'}, -1)}>
+        <Button block onPress={() => this.edit({}, -1)}>
           <Text><Icon name="add"/></Text>
         </Button>
       </Container>

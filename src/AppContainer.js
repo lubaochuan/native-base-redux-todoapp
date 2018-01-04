@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addTodo, toggleTodo, removeTodo, setVisibilityFilter } from './actions';
+import { addTodo, updateTodo, toggleTodo, removeTodo, setVisibilityFilter } from './actions';
 import TodoList from './components/TodoList';
 
 
@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addTodo: payload => dispatch(addTodo(payload)),
-    updateTodo: payload => dispatch(updateTodo(payload)),
+    updateTodo: (index, payload) => dispatch(updateTodo(index, payload)),
     removeTodo: index => dispatch(removeTodo(index)),
   }
 }

@@ -5,6 +5,14 @@ export function addTodo(payload) {
   };
 }
 
+export function updateTodo(index, payload) {
+  return {
+    type: 'UPDATE_TODO',
+    index,
+    payload,
+  };
+}
+
 export function toggleTodo(index) {
   return {
     type: 'TOGGLE_TODO',

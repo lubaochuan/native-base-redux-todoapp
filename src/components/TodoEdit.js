@@ -5,13 +5,13 @@ import { Field, reduxForm } from 'redux-form';
 
 const validate = values => {
   const error = {};
-  error.name = '';
-  var name = values.name;
-  if(values.name === undefined){
-    name = '';
+  error.text = '';
+  var text = values.text;
+  if(values.text === undefined){
+    text = '';
   }
-  if(name.replace(/^\s+|\s+$/gm,'').length == 0){
-    error.name = 'required';
+  if(text.replace(/^\s+|\s+$/gm,'').length == 0){
+    error.text = 'required';
   }
   return error;
 };
@@ -21,7 +21,7 @@ class TodoEdit extends React.Component {
     super(props);
   }
 
-  static navigationOptions = ({ navigation, item}) => ({
+  static navigationOptions = ({ navigation, item, id }) => ({
     header: (
       <Header>
         <Left>
@@ -30,7 +30,7 @@ class TodoEdit extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title>{item.text}</Title>
+          <Title>{id < 0? "New":"Edit"}</Title>
         </Body>
         <Right />
       </Header>
@@ -56,11 +56,11 @@ class TodoEdit extends React.Component {
     return (
       <Container>
         <Content padder>
-          <Field name="name" component={this.renderInput} />
+          <Field name="text" component={this.renderInput} />
           <Button block primary onPress={handleSubmit}>
             <Text>Save</Text>
           </Button>
-          <Button block primary onPress={()=>this.props.navigation.goBack(null)}>
+          <Button block bordered primary onPress={()=>this.props.navigation.goBack(null)}>
             <Text>Cancel</Text>
           </Button>
         </Content>

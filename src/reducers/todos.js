@@ -9,6 +9,19 @@ export const todos = (state = initialState, action) => {
       return { ...state,
         todos: [...state.todos, { text: action.payload, completed: false }],
       };
+    case 'UPDATE_TODO':
+      return {
+        ...state,
+        todos: state.todos.map(
+          (todo, index) => {
+            console.log("index:"+index)
+            if(action.index === index){
+              return action.payload;
+            }else{
+              return todo;
+            }
+          })
+      }
     case 'REMOVE_TODO':
       return {
         ...state,
