@@ -1,9 +1,9 @@
 const initialState = {
   todos: [{text: 'read a book', completed: false}, {text: 'go run', completed: false}], // Array of objects of type {text: 'my task', completed: false}
   displayType: 'all', // expected values: 'all', 'completed', 'active'
-};
+}
 
-export default function (state = initialState, action) {
+export const todos = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return { ...state,

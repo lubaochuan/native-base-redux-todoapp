@@ -5,8 +5,8 @@ import TodoList from './components/TodoList';
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos,
-    displayType: state.displayType,
+    todos: state.main.todos,
+    displayType: state.main.displayType,
   };
 }
 
