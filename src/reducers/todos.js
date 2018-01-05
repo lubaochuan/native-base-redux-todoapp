@@ -8,7 +8,7 @@ export const todos = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return { ...state,
-        todos: [...state.todos, { text: action.payload, completed: false }],
+        todos: [...state.todos, action.payload],
       };
     case 'UPDATE_TODO':
       return {

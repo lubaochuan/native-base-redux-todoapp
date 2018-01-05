@@ -22,7 +22,7 @@ export default class TodoList extends Component {
   update = (values) => {
     console.log('Submitted!', JSON.stringify(values))
     if(values.id < 0){
-      this.props.addTodo(values.text)
+      this.props.addTodo(values)
     }else{
       this.props.updateTodo(values.id, values)
     }

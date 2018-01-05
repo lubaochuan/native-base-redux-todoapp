@@ -6,6 +6,8 @@ import { Field, reduxForm } from 'redux-form';
 const validate = values => {
   const error = {};
   error.text = '';
+  error.subject = '';
+  
   var text = values.text;
   if(values.text === undefined){
     text = '';
@@ -13,6 +15,15 @@ const validate = values => {
   if(text.replace(/^\s+|\s+$/gm,'').length == 0){
     error.text = 'required';
   }
+  
+  var subject = values.subject;
+  if(values.subject === undefined){
+    subject = '';
+  }
+  if(subject.replace(/^\s+|\s+$/gm,'').length == 0){
+    error.subject = 'required';
+  }
+
   return error;
 };
 
