@@ -6,6 +6,7 @@ import TodoList from './components/TodoList';
 function mapStateToProps(state) {
   return {
     todos: state.main.todos,
+    subjects: state.main.subjects,
     displayType: state.main.displayType,
   };
 }

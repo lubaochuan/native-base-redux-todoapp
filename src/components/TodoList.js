@@ -30,14 +30,15 @@ export default class TodoList extends Component {
   }
 
   edit(item, id) {
+    subjects = this.props.subjects
     if (id < 0){
       this.props.navigation.navigate(
         'Edit',
-        {initialValues: {...item, id}, id, onSubmit: this.update});
+        {initialValues: {...item, id}, id, subjects, onSubmit: this.update});
     }else{
       this.props.navigation.navigate(
         'Edit',
-        {initialValues: {...item, id}, id, onSubmit: this.update});
+        {initialValues: {...item, id}, id, subjects, onSubmit: this.update});
     }
   }
 

@@ -1,5 +1,6 @@
 const initialState = {
-  todos: [{text: 'read a book', completed: false}, {text: 'go run', completed: false}], // Array of objects of type {text: 'my task', completed: false}
+  todos: [{text: 'read a book', subject: 'Math'}, {text: 'go run', subject: "Art"}],
+  subjects: ["Math", "Language", "Art", "Science"],
   displayType: 'all', // expected values: 'all', 'completed', 'active'
 }
 
