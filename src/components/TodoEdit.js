@@ -91,7 +91,7 @@ class TodoEdit extends React.Component {
             iosHeader="Select one"
             mode="dropdown">
             {subjects.map((subject, index) =>
-              <Item label={subject} value={subject} />)}
+              <Item label={subject} value={subject} key={index}/>)}
           </Field>
 
           <Button block primary onPress={handleSubmit}>

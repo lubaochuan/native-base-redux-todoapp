@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 import { persistStore, persistCombineReducers } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import allReducers from './reducers/index';
-import MainScreenNavigator from './components/index';
+import MainTabNavigator from './components/MainTabNavigator';
 
 
 // configue redux-persist
@@ -24,7 +24,7 @@ export default class Index extends Component { // eslint-disable-line
   render() { // eslint-disable-line
     return (
       <Provider store={store} >
-        <MainScreenNavigator />
+        <MainTabNavigator />
       </Provider>
     );
   }
