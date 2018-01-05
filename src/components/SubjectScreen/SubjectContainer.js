@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addSubject, removeSubject } from '../actions';
+import { addSubject, removeSubject } from '../../actions';
 import SubjectList from './SubjectList';
 
 

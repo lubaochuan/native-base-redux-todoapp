@@ -1,22 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Container, Header, Title, Content, InputGroup, Input, List, ListItem,
-  Button, Body, Icon, Fab, Footer } from 'native-base';
-import { View, Text, Dimensions, Alert } from 'react-native';
-import PropTypes from 'prop-types';
-import TodoItem from './TodoItem';
+  Button, Body, Icon, Fab, Footer, Left, Right } from 'native-base'
+import { View, Text, Dimensions, Alert } from 'react-native'
+import PropTypes from 'prop-types'
 
 
 export default class SubjectList extends Component {
-  static navigationOptions = () => ({
-    header: (
-      <Header>
-        <Body>
-          <Title>Subjects</Title>
-        </Body>
-      </Header>
-    )
-  })
-
   static propTypes = {
     addSubject: PropTypes.func,
     removeSubject: PropTypes.func,
@@ -47,9 +36,17 @@ export default class SubjectList extends Component {
     return (
       <Container>
         <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
           <Body>
-            <Title>Subjects</Title>
+            <Title>HomeScreen</Title>
           </Body>
+          <Right />
         </Header>
         <Content >
           <List>

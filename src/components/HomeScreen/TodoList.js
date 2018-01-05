@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Header, Title, Content, InputGroup, Input, List, Button,
-  Body, Icon } from 'native-base';
+  Body, Icon, Left, Right } from 'native-base';
 import { View, Text, Dimensions, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 
 export default class TodoList extends Component {
-  static navigationOptions = () => ({
-    header: (
-      <Header>
-        <Body>
-          <Title>Log</Title>
-        </Body>
-      </Header>
-    )
-  });
-
   static propTypes = {
     removeTodo: PropTypes.func,
     setVisibilityFilter: PropTypes.func,
@@ -71,6 +61,19 @@ export default class TodoList extends Component {
   render() {
     return (
       <Container>
+        <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>HomeScreen</Title>
+          </Body>
+          <Right />
+        </Header>
         <Content>
           <List>
             {this.renderTodoList()}

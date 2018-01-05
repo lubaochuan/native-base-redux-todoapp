@@ -1,6 +1,6 @@
-import React from 'react';
-import { Alert } from 'react-native';
-import { Text, Icon, ListItem, Body, Right } from 'native-base';
+import React from 'react'
+import { Alert } from 'react-native'
+import { Text, Icon, ListItem, Body, Right } from 'native-base'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
