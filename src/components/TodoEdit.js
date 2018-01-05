@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Card, CardItem, Body, Content, Header, Left, Right, Icon,
   Title, Button, Text, Item, Input, Label, Picker } from "native-base";
 import { Field, reduxForm } from 'redux-form';
+import DatePicker from 'react-native-datepicker'
+import moment from 'moment'
 
 const validate = values => {
   const error = {};
@@ -62,7 +64,9 @@ class TodoEdit extends React.Component {
     )
   }
   
-  renderPicker = ({ input: { onChange, value, ...inputProps }, label, children, ...pickerProps }) => (
+  renderSubjectPicker = ({ input: { onChange, value, ...inputProps }, label, children, ...pickerProps }) => (
+    <Item inlineLabel>
+      <Label>Subject</Label>
     <Picker
       placeholder="Select Subject"
       selectedValue={ value }
@@ -72,10 +76,20 @@ class TodoEdit extends React.Component {
     >
       { children }
     </Picker>
+    </Item>
   );
   
-  formatLoanTerm = value => value.toString();
-  parseLoanTerm = value => parseInt(value);
+  renderDatePicker = ({ input: { onChange, value, ...inputProps } }) => (
+    <Item inlineLabel>
+      <Label>Date</Label>
+      <DatePicker
+        date={value == undefined? new moment().format("MM/DD/YYYY"):value}
+        format={"MM/DD/YYYY"}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        onDateChange={(date) => onChange(moment(new Date(date)).format("MM/DD/YYYY"))}/>
+    </Item>
+  );
 
   render() {
     const { handleSubmit, subjects } = this.props;
@@ -86,14 +100,13 @@ class TodoEdit extends React.Component {
           <Field name="text" label="Title" component={this.renderInput} />
           <Field
             name="subject"
-            label="Subject"
-            component={ this.renderPicker }
+            component={ this.renderSubjectPicker }
             iosHeader="Select one"
             mode="dropdown">
             {subjects.map((subject, index) =>
               <Item label={subject} value={subject} key={index}/>)}
           </Field>
-
+          <Field name="date" component={this.renderDatePicker}/>
           <Button block primary onPress={handleSubmit}>
             <Text>Save</Text>
           </Button>

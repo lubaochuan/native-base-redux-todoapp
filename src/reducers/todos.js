@@ -1,5 +1,7 @@
 const initialState = {
-  todos: [{text: 'read a book', subject: 'Math'}, {text: 'go run', subject: "Art"}],
+  todos: [
+    {text: 'read a book', subject: 'Math', date:'12/10/2017'},
+    {text: 'go run', subject: "Art", date:'01/10/2018'}],
   subjects: ["Math", "Language", "Art", "Science"],
   displayType: 'all', // expected values: 'all', 'completed', 'active'
 }

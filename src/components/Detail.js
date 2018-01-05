@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Card, CardItem, Body, Content, Header, Left, Right, Button, Icon,
-  Title, Text } from "native-base";
+  Title, Text } from "native-base"
+import MyDatePicker from './MyDatePicker'
 
 export default class Detail extends React.Component {
   static navigationOptions = ({ navigation, item, id }) => ({
@@ -41,6 +42,7 @@ export default class Detail extends React.Component {
               </Button>
             </CardItem>
          </Card>
+         <MyDatePicker />
         </Content>
       </Container>
     );
