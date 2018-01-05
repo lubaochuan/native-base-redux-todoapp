@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Container, Header, Title, Content, InputGroup, Input, List, Button, Icon } from 'native-base';
 import { View, Text, Dimensions, Alert } from 'react-native';
 import PropTypes from 'prop-types';
-
 import TodoItem from './TodoItem';
 
-const { width } = Dimensions.get('window');
 
 export default class TodoList extends Component {
 
@@ -17,23 +15,8 @@ export default class TodoList extends Component {
     displayType: PropTypes.string,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = { inputText: '', displayType: 'all' };
-  }
-  
-  onOpenItem=(rowData, rowID) => {
-    this.props.navigation.navigate(
-      'Edit',
-      {item: rowData, id: rowID, update: this.updateItem});
-  }
-
   remove(id) {
     this.props.removeTodo(id);
-  }
-
-  toggle(id) {
-    this.props.toggleTodo(id);
   }
 
   update = (values) => {
@@ -72,7 +55,7 @@ export default class TodoList extends Component {
   render() {
     return (
       <Container>
-        <Content contentContainerStyle={{ justifyContent: 'space-between' }} >
+        <Content>
           <List>
             {this.renderTodoList()}
           </List>
