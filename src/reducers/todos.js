@@ -45,6 +45,15 @@ export const todos = (state = initialState, action) => {
       return {
         ...state, displayType: action.displayType,
       };
+    case 'ADD_SUBJECT':
+      return { ...state,
+        subjects: [...state.subjects, action.payload],
+      };
+    case 'REMOVE_SUBJECT':
+      return { ...state,
+        subjects: [...state.subjects.slice(0, action.index),
+          ...state.subjects.slice(action.index + 1)],
+      };
     default:
   }
   return state;

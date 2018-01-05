@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { TabNavigator } from "react-navigation";
 import { Button, Text, Icon, Footer, FooterTab } from "native-base";
-import MainScreenNavigator from './MainScreenNavigator';
-import Settings from './Settings';
+import ListStackNavigator from './ListStackNavigator'
+import SettingsStackNavigator from './SettingsStackNavigator'
+import SubjectContainer from './SubjectContainer'
 
 export default (MainTabNavigator = TabNavigator(
   {
-    List: { screen: MainScreenNavigator },
-    Settings: { screen: Settings }
+    List: { screen: ListStackNavigator },
+    Settings: { screen: SubjectContainer }
   },
   {
     tabBarPosition: "bottom",

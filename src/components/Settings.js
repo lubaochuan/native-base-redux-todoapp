@@ -1,6 +1,6 @@
-import React from "react";
-import { Container, Card, CardItem, Body, Content, Header, Left, Right, Button, Icon,
-  Title, Text } from "native-base";
+import React from "react"
+import { Container, Header, Body, Content, List, ListItem, Text, Title,
+  Icon, Left, Right } from "native-base"
 
 export default class Settings extends React.Component {
   static navigationOptions = () => ({
@@ -11,24 +11,30 @@ export default class Settings extends React.Component {
         </Body>
       </Header>
     )
-  });
+  })
 
   render() {
-    const { item } = this.props;
     return (
       <Container>
         <Content>
-          <Card>
-            <CardItem>
+          <List>
+            <ListItem icon>
+              <Left><Icon name="person" /></Left>
               <Body>
-                <Text>
-                  Hello world!
-                </Text>
+                <Text>Students</Text>
               </Body>
-            </CardItem>
-         </Card>
+              <Right><Icon name="arrow-forward" /></Right>
+            </ListItem>
+            <ListItem>
+              <Left><Icon name="book" /></Left>
+              <Body>
+                <Text>Subjects</Text>
+              </Body>
+              <Right><Icon name="arrow-forward" /></Right>
+            </ListItem>
+          </List>
         </Content>
       </Container>
-    );
+    )
   }
 }

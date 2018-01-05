@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Container from "../AppContainer.js";
+import ListContainer from "./ListContainer.js";
 import TodoEdit from "./TodoEdit.js";
 import Detail from "./Detail.js";
 import { StackNavigator } from "react-navigation";
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
-export default (MainScreenNavigator = StackNavigator({
-  Main: { screen: Container},
+export default (ListStackNavigator = StackNavigator({
+  Main: { screen: ListContainer},
   Edit: { screen: withMappedNavigationAndConfigProps(TodoEdit) },
   Detail: { screen: withMappedNavigationAndConfigProps(Detail) },
 }));

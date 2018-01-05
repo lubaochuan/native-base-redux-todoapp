@@ -33,3 +33,17 @@ export function setVisibilityFilter(displayType) {
     displayType,
   };
 }
+
+export function addSubject(payload) {
+  return {
+    type: 'ADD_SUBJECT',
+    payload,
+  }
+}
+
+export function removeSubject(index) {
+  return {
+    type: 'REMOVE_SUBJECT',
+    index,
+  };
+}
