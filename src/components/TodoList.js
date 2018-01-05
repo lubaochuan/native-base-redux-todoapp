@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Content, InputGroup, Input, List, Button, Icon } from 'native-base';
+import { Container, Header, Title, Content, InputGroup, Input, List, Button,
+  Body, Icon } from 'native-base';
 import { View, Text, Dimensions, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
 
 export default class TodoList extends Component {
+  static navigationOptions = () => ({
+    header: (
+      <Header>
+        <Body>
+          <Title>Log</Title>
+        </Body>
+      </Header>
+    )
+  });
 
   static propTypes = {
     removeTodo: PropTypes.func,
@@ -41,11 +51,16 @@ export default class TodoList extends Component {
         {initialValues: {...item, id}, id, subjects, onSubmit: this.update});
     }
   }
+  
+  detail(item) {
+    this.props.navigation.navigate('Detail', {item});
+  }
 
   renderTodoList() {
     return this.props.todos.map((item, index) =>
       <TodoItem
         edit={() => this.edit(item, index)}
+        detail={() => this.detail(item)}
         remove={() => this.remove(index)}
         item={item}
         key={index}

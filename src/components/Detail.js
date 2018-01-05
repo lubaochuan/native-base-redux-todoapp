@@ -1,0 +1,48 @@
+import React from "react";
+import { Container, Card, CardItem, Body, Content, Header, Left, Right, Button, Icon,
+  Title, Text } from "native-base";
+
+export default class Detail extends React.Component {
+  static navigationOptions = ({ navigation, item, id }) => ({
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.goBack()}>
+            <Icon name="arrow-back" />
+          </Button>
+        </Left>
+        <Body>
+          <Title><Text>Detail</Text></Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  });
+
+  render() {
+    const { item } = this.props;
+    return (
+      <Container>
+        <Content>
+          <Card>
+            <CardItem>
+              <Body>
+                <Text>
+                  Subject: {item.subject}
+                </Text>
+                <Text>
+                  Title: {item.text}
+                </Text>
+              </Body>
+            </CardItem>
+            <CardItem footer>
+              <Button block bordered rounded primary onPress={()=>this.props.navigation.goBack(null)}>
+                <Text>Close</Text>
+              </Button>
+            </CardItem>
+         </Card>
+        </Content>
+      </Container>
+    );
+  }
+}
