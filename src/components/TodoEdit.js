@@ -5,17 +5,22 @@ import { Field, reduxForm } from 'redux-form';
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment'
 
+function isNormalInteger(str) {
+    return /^\+?(0|[1-9]\d*)$/.test(str);
+}
+
 const validate = values => {
   const error = {};
-  error.text = '';
+  error.duration = '';
   error.subject = '';
   
-  var text = values.text;
-  if(values.text === undefined){
-    text = '';
+  var duration = values.duration;
+  if(values.duration === undefined){
+    duration = '';
   }
-  if(text.replace(/^\s+|\s+$/gm,'').length == 0){
-    error.text = 'required';
+
+  if(!isNormalInteger(duration)){
+    error.duration = 'must be integer';
   }
   
   var subject = values.subject;
@@ -25,7 +30,7 @@ const validate = values => {
   if(subject.replace(/^\s+|\s+$/gm,'').length == 0){
     error.subject = 'required';
   }
-
+  
   return error;
 };
 
@@ -56,7 +61,7 @@ class TodoEdit extends React.Component {
       hasError= true;
     }
     return(
-      <Item inlineLabel error= {hasError}>
+      <Item stackedLabel error= {hasError}>
         <Label>{label}</Label>
         <Input {...input}/>
         {hasError ? <Text>{error}</Text> : <Text />}
@@ -65,10 +70,10 @@ class TodoEdit extends React.Component {
   }
   
   renderSubjectPicker = ({ input: { onChange, value, ...inputProps }, label, children, ...pickerProps }) => (
-    <Item inlineLabel>
-      <Label>Subject</Label>
+    <Item stackedLabel>
+      <Label>{label}</Label>
     <Picker
-      placeholder="Select Subject"
+      placeholder="Select One"
       selectedValue={ value }
       onValueChange={ value => onChange(value) }
       { ...inputProps }
@@ -80,11 +85,23 @@ class TodoEdit extends React.Component {
   );
   
   renderDatePicker = ({ input: { onChange, value, ...inputProps } }) => (
-    <Item inlineLabel>
+    <Item stackedLabel>
       <Label>Date</Label>
       <DatePicker
         date={value == undefined? new moment().format("MM/DD/YYYY"):value}
         format={"MM/DD/YYYY"}
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 0,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 36
+          }
+          // ... You can check the source to find the other keys.
+        }}
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         onDateChange={(date) => onChange(moment(new Date(date)).format("MM/DD/YYYY"))}/>
@@ -97,9 +114,9 @@ class TodoEdit extends React.Component {
     return (
       <Container>
         <Content padder>
-          <Field name="text" label="Title" component={this.renderInput} />
           <Field
             name="subject"
+            label="Subject"
             component={ this.renderSubjectPicker }
             iosHeader="Select one"
             mode="dropdown">
@@ -107,10 +124,12 @@ class TodoEdit extends React.Component {
               <Item label={subject} value={subject} key={index}/>)}
           </Field>
           <Field name="date" component={this.renderDatePicker}/>
-          <Button block primary onPress={handleSubmit}>
+          <Field name="duration" label="Duration (minutes)" component={this.renderInput} />
+          <Field name="text" label="Note" placeholder="Write a note" component={this.renderInput} />
+          <Button rounded primary onPress={handleSubmit}>
             <Text>Save</Text>
           </Button>
-          <Button block bordered primary onPress={()=>this.props.navigation.goBack(null)}>
+          <Button rounded bordered primary onPress={()=>this.props.navigation.goBack(null)}>
             <Text>Cancel</Text>
           </Button>
         </Content>

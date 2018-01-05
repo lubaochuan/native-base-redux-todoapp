@@ -1,7 +1,12 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { Text, Icon, ListItem, Body, Right } from 'native-base';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import moment from 'moment'
+
+function dayOfWeek(dateString){
+  return moment(dateString, 'MM/DD/YYYY').format('dddd MM/DD/YYYY');
+}
 
 const TodoItem = ({ edit, detail, remove, item }) => (
   <ListItem button
@@ -19,7 +24,7 @@ const TodoItem = ({ edit, detail, remove, item }) => (
       )}>
     <Body>
         <Text>{item.subject}</Text>
-        <Text note>{item.text}</Text>
+        <Text note>{dayOfWeek(item.date)} {"\n"}{item.duration} minutes</Text>
     </Body>
     <Right>
       <Icon name="arrow-forward" />

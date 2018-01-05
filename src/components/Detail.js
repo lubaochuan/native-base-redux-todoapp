@@ -13,7 +13,7 @@ export default class Detail extends React.Component {
           </Button>
         </Left>
         <Body>
-          <Title><Text>Detail</Text></Title>
+          <Title><Text>Details</Text></Title>
         </Body>
         <Right />
       </Header>
@@ -32,7 +32,13 @@ export default class Detail extends React.Component {
                   Subject: {item.subject}
                 </Text>
                 <Text>
-                  Title: {item.text}
+                  Date: {item.date}
+                </Text>
+                <Text>
+                  Duration: {item.duration} minutes
+                </Text>
+                <Text>
+                  Note: {item.text}
                 </Text>
               </Body>
             </CardItem>
@@ -42,7 +48,6 @@ export default class Detail extends React.Component {
               </Button>
             </CardItem>
          </Card>
-         <MyDatePicker />
         </Content>
       </Container>
     );
