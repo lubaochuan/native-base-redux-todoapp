@@ -7,6 +7,22 @@ import TodoItem from './TodoItem';
 
 
 export default class TodoList extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header>
+      <Left>
+        <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
+          <Icon name="menu" />
+        </Button>
+      </Left>
+      <Body>
+        <Title>Home</Title>
+      </Body>
+      <Right />
+      </Header>
+    )
+  });
+
   static propTypes = {
     removeTodo: PropTypes.func,
     setVisibilityFilter: PropTypes.func,
@@ -61,19 +77,6 @@ export default class TodoList extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>HomeScreen</Title>
-          </Body>
-          <Right />
-        </Header>
         <Content>
           <List>
             {this.renderTodoList()}

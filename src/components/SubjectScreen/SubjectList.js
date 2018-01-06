@@ -44,7 +44,7 @@ export default class SubjectList extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>HomeScreen</Title>
+            <Title>Subjects</Title>
           </Body>
           <Right />
         </Header>

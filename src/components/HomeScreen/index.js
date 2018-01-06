@@ -1,14 +1,14 @@
 import React, { Component } from "react"
 
 import ListStackNavigator from './ListStackNavigator'
-import SubjectScreen from "../SubjectScreen/index.js";
+import SubjectContainer from "../SubjectScreen/SubjectContainer.js";
 import SideBar from "../SideBar/SideBar.js";
 import { DrawerNavigator } from "react-navigation";
 
 const HomeScreenRouter = DrawerNavigator(
   {
     Home: { screen: ListStackNavigator },
-    Subjects: { screen: SubjectScreen },
+    Subjects: { screen: SubjectContainer },
   },
   {
     contentComponent: props => <SideBar {...props} />,

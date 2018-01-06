@@ -126,10 +126,10 @@ class TodoEdit extends React.Component {
           <Field name="date" component={this.renderDatePicker}/>
           <Field name="duration" label="Duration (minutes)" component={this.renderInput} />
           <Field name="text" label="Note" placeholder="Write a note" component={this.renderInput} />
-          <Button rounded primary onPress={handleSubmit}>
+          <Button block rounded primary onPress={handleSubmit}>
             <Text>Save</Text>
           </Button>
-          <Button rounded bordered primary onPress={()=>this.props.navigation.goBack(null)}>
+          <Button block rounded bordered primary onPress={()=>this.props.navigation.goBack(null)}>
             <Text>Cancel</Text>
           </Button>
         </Content>
